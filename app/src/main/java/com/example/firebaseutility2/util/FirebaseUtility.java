@@ -1,6 +1,7 @@
 package com.example.firebaseutility2.util;
 
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -32,13 +33,10 @@ public class FirebaseUtility {
     public static String stringa;
 
     public static String getRelativeUrl(String mail) {
+
         String relativeurl;
-        String mailoriginal;
-        String mailmodified;
-        mailoriginal = mail;
-        String[] substring = mailoriginal.split("@");
-        mailmodified = substring[0];
-        relativeurl = mailmodified.replace('.', '_');
+        String[] substring = mail.split("@");
+        relativeurl = substring[0].replace('.', '_');
         return relativeurl;
     }
 
@@ -46,10 +44,8 @@ public class FirebaseUtility {
     public static void setPersonalListener(final String mail, final Context context, final Object oggetto) {
         contesto = context;
         Obj = oggetto;
-
         username = getRelativeUrl(mail);
         database = FirebaseDatabase.getInstance();
-
         DatabaseReference utenteRoot = database.getReferenceFromUrl(BASE_URL + username);
 
         utenteRoot.addChildEventListener(new ChildEventListener() {
@@ -57,21 +53,18 @@ public class FirebaseUtility {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Intent detailsIntent = new Intent(context, MainActivity.class);
                 createNotificationChannel(Obj);
-
                 PendingIntent detailsPendingIntent = PendingIntent.getActivity(
                         context,
                         0,
                         detailsIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
-
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "CHANNEL_ID")
                         .setSmallIcon(android.R.drawable.ic_dialog_info)
                         .setContentTitle(Constants.TITLE)
                         .setContentText("Nuova Richiesta")
                         .setContentIntent(detailsPendingIntent)
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setAutoCancel(true);
-
+                        .setAutoCancel(false);
 
                 NotificationManagerCompat.from(context).notify(1, mBuilder.build());
 
@@ -96,8 +89,9 @@ public class FirebaseUtility {
                         .setContentTitle(Constants.TITLE)
                         .setContentText(Constants.DB_UPDATED)
                         .setContentIntent(detailsPendingIntent)
+                        .setDefaults(Notification.DEFAULT_ALL)
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setAutoCancel(true);
+                        .setAutoCancel(false);
 
                 NotificationManagerCompat.from(context).notify(1, mBuilder.build());
 
@@ -132,7 +126,7 @@ public class FirebaseUtility {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Notifica a capocchia";
+            CharSequence name = "Notifica";
             String description = "AGGIORNAMENTO";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             channel = new NotificationChannel("CHANNEL_ID", name, importance);
