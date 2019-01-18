@@ -87,6 +87,7 @@ Obj=oggetto;
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
                         .setAutoCancel(true);
 
+
                 NotificationManagerCompat.from(context).notify(1,mBuilder.build());
 
             }
