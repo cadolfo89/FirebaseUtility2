@@ -6,53 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginLeft="98dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="45dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/send"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="135dp"
-        android:layout_marginLeft="135dp"
         android:layout_marginTop="41dp"
         android:layout_marginEnd="188dp"
-        android:layout_marginRight="188dp"
-        android:layout_marginBottom="77dp"
+        android:layout_marginBottom="587dp"
         android:text="Send"
-        app:layout_constraintBottom_toTopOf="@+id/setListener"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mail" />
+        app:layout_constraintTop_toBottomOf="@+id/mail"
+        app:layout_constraintVertical_bias="0.622" />
 
     <Button
         android:id="@+id/setListener"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="135dp"
-        android:layout_marginLeft="135dp"
         android:layout_marginTop="77dp"
         android:layout_marginEnd="188dp"
-        android:layout_marginRight="188dp"
         android:layout_marginBottom="385dp"
         android:text="Listener"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/send" />
+        app:layout_constraintTop_toBottomOf="@+id/send"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/mail"
+        android:layout_width="194dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="47dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Mail"
+        app:layout_constraintBottom_toTopOf="@+id/setListener"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/send"
+        app:layout_constraintVertical_bias="0.663" />
 </android.support.constraint.ConstraintLayout>

@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.firebaseutility2.util.FirebaseUtility;
-import com.example.firebaseutility2.util.Notification;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 emailTemp = testomail.getText().toString();
-                FirebaseUtility.setPersonalListener(emailTemp,MainActivity.this);
-                Notification.createNotificationChannel();
+                FirebaseUtility.setPersonalListener(emailTemp,MainActivity.this,getSystemService(NotificationManager.class));
+               /* Notification.createNotificationChannel();
                 NotificationManager notificationManager = getSystemService(NotificationManager.class);
                 notificationManager.createNotificationChannel(Notification.channel);
-                Notification.CreaNotifica(MainActivity.this,Notification.CreatePendingIntent(MainActivity.this));
+                Notification.CreaNotifica(MainActivity.this,Notification.CreatePendingIntent(MainActivity.this));*/
 
 
             }

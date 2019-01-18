@@ -8,7 +8,9 @@ public final class Constants {
 
     public static final String CHANNEL_ID = "PUSH_NOTIFICATION";
 
-    public static final String DB_UPDATED = "Database aggiornato";
+    public static final String DB_UPDATED = "Aggiornamento disponibile";
+    public static  String Rifiutato="Rifiutato";
+
 
     private Constants(){}
 }
