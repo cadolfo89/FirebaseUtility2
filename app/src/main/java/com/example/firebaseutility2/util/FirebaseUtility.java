@@ -1,7 +1,6 @@
 package com.example.firebaseutility2.util;
 
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -41,9 +40,8 @@ public class FirebaseUtility {
     }
 
 
-    public static void setPersonalListener(final String mail, final Context context, final Object oggetto) {
+    public static void setPersonalListener(final String mail, final Context context) {
         contesto = context;
-        Obj = oggetto;
         username = getRelativeUrl(mail);
         database = FirebaseDatabase.getInstance();
         DatabaseReference utenteRoot = database.getReferenceFromUrl(BASE_URL + username);
@@ -51,49 +49,16 @@ public class FirebaseUtility {
         utenteRoot.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Intent detailsIntent = new Intent(context, MainActivity.class);
-                createNotificationChannel(Obj);
-                PendingIntent detailsPendingIntent = PendingIntent.getActivity(
-                        context,
-                        0,
-                        detailsIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "CHANNEL_ID")
-                        .setSmallIcon(android.R.drawable.ic_dialog_info)
-                        .setContentTitle(Constants.TITLE)
-                        .setContentText("Nuova Richiesta")
-                        .setContentIntent(detailsPendingIntent)
-                        .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setAutoCancel(false);
-
-                NotificationManagerCompat.from(context).notify(1, mBuilder.build());
-
+                com.example.firebaseutility2.util.Notification.notifica(context);
+                
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 Log.i("modifica", "modifica database");
-                //NotificationManagerCompat notificationManager=NotificationManagerCompat.from();
-                Intent detailsIntent = new Intent(context, MainActivity.class);
-                createNotificationChannel(Obj);
+                Notification.notifica(context);
 
-                PendingIntent detailsPendingIntent = PendingIntent.getActivity(
-                        context,
-                        0,
-                        detailsIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
-
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "CHANNEL_ID")
-                        .setSmallIcon(android.R.drawable.ic_dialog_info)
-                        .setContentTitle(Constants.TITLE)
-                        .setContentText(Constants.DB_UPDATED)
-                        .setContentIntent(detailsPendingIntent)
-                        .setDefaults(Notification.DEFAULT_ALL)
-                        .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setAutoCancel(false);
-
-                NotificationManagerCompat.from(context).notify(1, mBuilder.build());
 
             }
 
